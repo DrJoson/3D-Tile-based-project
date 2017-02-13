@@ -3,6 +3,8 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 	
+	private static MapGenerator mapGenerator;
+	
 	public static GameObject SelectedUnit;
 	PlayerUnit playerUnit;
 	public static bool PlayerTurn;
@@ -11,6 +13,12 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		mapGenerator = FindObjectOfType<MapGenerator>();
+		if(mapGenerator){
+			mapGenerator.GenerateMap();
+		} else {
+			Debug.LogError("No map generator found!");
+		}
 		SelectedUnit = null;
 		PlayerTurn = true;
 //		TurnNumber = 1;
