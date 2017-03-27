@@ -28,6 +28,7 @@ GameObject:
   - 65: {fileID: 6555892}
   - 114: {fileID: 11455894}
   - 114: {fileID: 11455892}
+  - 114: {fileID: 11487842}
   m_Layer: 0
   m_Name: Player Unit
   m_TagString: Untagged
@@ -54,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 155894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 455892}
@@ -110,7 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ccc1874f1b22046b121f43cc59762d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightColor: {r: .992156863, g: .729411781, b: .0588235296, a: 0}
 --- !u!114 &11455894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,6 +122,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac00df04d43033488c6a1866b7b859d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackPower: 5
+  movementSpeed: 4
+--- !u!114 &11487842
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b7f1e96579100244a0b6854cb4ab621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
