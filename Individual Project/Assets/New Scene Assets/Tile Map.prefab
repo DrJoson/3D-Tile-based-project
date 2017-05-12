@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &108514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 408514}
+  - 114: {fileID: 11408514}
+  - 114: {fileID: 11408510}
+  - 114: {fileID: 11408512}
+  - 114: {fileID: 11408508}
+  m_Layer: 0
+  m_Name: Tile Map
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &408514
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108514}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11408508
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df6db35dfbb4c046935249ec02e2280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11408510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12880faf5f10d348b1739c06ea0f6d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11408512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a0ce4be63a5cf4bae87f296a27f0a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11408514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bdf18268c8059146b3c207038264f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileTypes:
+  - name: Grass
+    tilePrefab: {fileID: 175360, guid: 080dc1d570a0f7b4ba70d1dcb0d8af29, type: 2}
+    passable: 1
+    movementCost: 1
+  - name: Forest
+    tilePrefab: {fileID: 193084, guid: d598d9dc9a3ee2e46b2de2651f2b43b9, type: 2}
+    passable: 1
+    movementCost: 2
+  - name: Stone
+    tilePrefab: {fileID: 158894, guid: c951d021e0d35fa40aabddc6ee280772, type: 2}
+    passable: 0
+    movementCost: 1
+  - name: Outpost
+    tilePrefab: {fileID: 158894, guid: 937006980f8e11241821b36292a9dde2, type: 2}
+    passable: 1
+    movementCost: 1
+  reachableIndicator: {fileID: 115286, guid: b76797b5e356c754eb728ce1924dca1b, type: 2}
+  mapSizeX: 0
+  mapSizeZ: 0
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 108514}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

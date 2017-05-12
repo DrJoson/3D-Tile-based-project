@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//[RequireComponent (typeof (Unit))]
 public class EnemyMouseOver : MonoBehaviour {
 	
 	Renderer bodyRenderer;
@@ -39,7 +40,7 @@ public class EnemyMouseOver : MonoBehaviour {
 		if(GameController.PlayerTurn && GameController.SelectedUnit){
 			//Debug.Log("Currently selected player unit wants to attack this target!");
 			bodyRenderer.material.color = normalColor;
-			GameController.SelectedTarget = this.gameObject;
+			GameController.SelectedUnit.GetComponent<Unit>().SetTarget(this.gameObject.GetComponent<Unit>());
 			bool target = true;
 			GameController.MoveSelectedUnit((int)this.transform.position.x, (int)this.transform.position.z, target);
 		}

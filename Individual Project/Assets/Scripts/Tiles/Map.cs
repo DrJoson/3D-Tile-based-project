@@ -9,25 +9,22 @@ public class Map : MonoBehaviour {
 	public int[,] tiles;
 	
 	Pathfinding path;
-	
-	//EnemyPathfinding enemyPath;
 
 	public int mapSizeX;
 	public int mapSizeZ;
 
 	void Start(){
 		path = FindObjectOfType<Pathfinding>();
-		//enemyPath = FindObjectOfType<EnemyPathfinding>();
 	}
 
-	public void GenerateMap(int sizeX, int sizeZ){
+	public void GenerateMap(int sizeX, int sizeZ, int level){
 		mapSizeX = sizeX;
 		mapSizeZ = sizeZ;
-		GenerateMapData();
+		GenerateMapData(level);
 		GenerateTiles();
 	}
 	
-	void GenerateMapData(){
+	void GenerateMapData(int level){
 		tiles = new int[mapSizeX,mapSizeZ];
 		
 		// defaulting all map to be made of grass tiles		
@@ -36,25 +33,102 @@ public class Map : MonoBehaviour {
 				tiles[x,z] = 0;
 			}
 		}
-		// setting some forest tiles
-		tiles[0, 2] = 1;
-		tiles[0, 3] = 1;
-		tiles[0, 4] = 1;
-		tiles[1, 2] = 1;
-		tiles[1, 3] = 1;
-		tiles[1, 4] = 1;
-		tiles[2, 2] = 1;
-		tiles[2, 3] = 1;
-	
+		
+		if(level == 3){
+		// tutorial stage
+		
+		// setting some forest tiles		
+		tiles[0,1] = 1;
+		tiles[0,2] = 1;
+		tiles[0,3] = 1;
+		tiles[0,4] = 1;
+		tiles[0,5] = 1;
+		tiles[0,6] = 1;
+		tiles[0,9] = 1;
+		tiles[1,1] = 1;
+		tiles[1,2] = 1;
+		tiles[1,3] = 1;
+		tiles[1,4] = 1;
+		tiles[1,9] = 1;
+		tiles[2,9] = 1;
+		tiles[2,2] = 1;
+		tiles[2,3] = 1;
+		tiles[3,2] = 1;
+		tiles[3,3] = 1;
+		
 		// setting some stone tiles
-		tiles[5, 2] = 2;
-		tiles[5, 3] = 2;
-		tiles[5, 4] = 2;
-		tiles[6, 3] = 2;
-		tiles[6, 4] = 2;
-		tiles[8, 2] = 2;
-		tiles[8, 3] = 2;
-		tiles[9, 2] = 2;
+		tiles[5,3] = 2;
+		tiles[5,2] = 2;
+		tiles[6,2] = 2;
+		tiles[8,1] = 2;
+		tiles[8,5] = 2;
+		tiles[8,6] = 2;
+		tiles[9,1] = 2;
+		tiles[9,5] = 2;
+		tiles[9,6] = 2;
+		}
+		
+		if(level == 4){ 
+		// claim outpost stage
+		
+		// setting some forest tiles
+		tiles[0,4] = 1;
+		tiles[0,5] = 1;
+		tiles[0,6] = 1;
+		tiles[1,4] = 1;
+		tiles[1,5] = 1;
+		tiles[1,6] = 1;
+		tiles[2,4] = 1;
+		tiles[2,5] = 1;
+		tiles[2,6] = 1;
+		tiles[3,5] = 1;
+		tiles[3,6] = 1;
+		// setting some stone tiles
+		tiles[8,1] = 2;
+		tiles[3,2] = 2;
+		tiles[4,2] = 2;
+		tiles[5,2] = 2;
+		tiles[8,2] = 2;
+		tiles[4,3] = 2;
+		tiles[5,3] = 2;
+		tiles[7,3] = 2;
+		tiles[7,4] = 2;
+		tiles[5,4] = 2;
+		tiles[7,5] = 2;
+		tiles[8,3] = 2;
+		
+		// setting up outpost tile
+		tiles[1,8] = 3;
+		}
+	
+		if(level == 5){
+		// survive attack stage
+		
+		// setting some stone tiles
+		tiles[3,1] = 2;
+		tiles[3,3] = 2;
+		tiles[4,1] = 2;
+		tiles[4,3] = 2;
+		tiles[5,0] = 2;
+		tiles[5,1] = 2;
+		tiles[5,3] = 2;
+		tiles[5,4] = 2;
+		tiles[6,0] = 2;
+		tiles[6,4] = 2;
+		tiles[6,5] = 2;
+		tiles[6,6] = 2;
+		tiles[7,0] = 2;
+		tiles[8,0] = 2;
+		tiles[8,4] = 2;
+		tiles[8,5] = 2;
+		tiles[8,6] = 2;
+		tiles[9,0] = 2;
+		tiles[9,1] = 2;
+		tiles[9,2] = 2;
+		tiles[9,3] = 2;
+		tiles[9,4] = 2;
+		
+		}
 		
 	}	
 	
@@ -82,42 +156,18 @@ public class Map : MonoBehaviour {
 		}
 	}
 	
-	/*public void HighlightReachableTilesEnemy(){
-		for(int x = 0; x < mapSizeX; x++){
-			for(int z = 0; z < mapSizeZ; z++){
-				if(enemyPath.SearchForTarget(GameController.SelectedUnit, x, z)){
-					GameObject reachableTile = Instantiate(reachableIndicator, new Vector3(x, 0.1f, z), Quaternion.identity) as GameObject;
-					GameController.reachableIndicators.Add(reachableTile);
-					reachableTile.transform.parent = GameObject.Find("Highlighted Tiles").transform;
-				}
-			}
-		}
-	}*/
-	
 	public bool TilePassable(int x, int z){
 		return tileTypes[tiles[x,z]].passable;
 	}
 	
-	/*public bool TileOccupied(int x, int z){
-		bool occupied = false;
-		//int NumberOfUnits = GameController.EnemyCount.Length;
-		for(int i = 0; i < NumberOfUnits; i++){
-			EnemyUnit UnitOnMap = (EnemyUnit) GameController.EnemyCount.GetValue(i);
-			Vector3 ThatUnitPosition = UnitOnMap.transform.position;
-			if(path.TileToWorldCoordinates(x,z) == ThatUnitPosition){
-				occupied = true;
-				return occupied;
-			}
-		}
-		return occupied;
-	}*/
-	
 	public bool TileOccupiedByEnemy(int x, int z){
 		bool occupied = false;
-		foreach(EnemyUnit enemy in GameController.EnemyCount){
-			Vector3 EnemyPosition = enemy.transform.position;
+		foreach(Unit enemyUnit in GameController.EnemyCount){
+			//Vector3 EnemyPosition = enemyUnit.transform.position;
+			Vector3 EnemyPosition = new Vector3(enemyUnit.GetTileX(), 0, enemyUnit.GetTileZ());
 			if(path.TileToWorldCoordinates(x,z) == EnemyPosition){
-				if(EnemyPosition != GameController.SelectedUnit.transform.position){
+ 				if(EnemyPosition != GameController.SelectedUnit.transform.position){
+				//if(EnemyPosition != MovingUnit.transform.position){
 					occupied = true;
 					return occupied;
 				}
@@ -128,8 +178,9 @@ public class Map : MonoBehaviour {
 	
 	public bool TileOccupiedByPlayer(int x, int z){
 		bool occupied = false;
-		foreach(PlayerUnit player in GameController.PlayerCount){
-			Vector3 PlayerPosition = player.transform.position;
+		foreach(Unit playerUnit in GameController.PlayerCount){
+			//Vector3 PlayerPosition = playerUnit.transform.position;
+			Vector3 PlayerPosition = new Vector3(playerUnit.GetTileX(), 0, playerUnit.GetTileZ());
 			if(path.TileToWorldCoordinates(x,z) == PlayerPosition){
 				if(PlayerPosition != GameController.SelectedUnit.transform.position){
 					occupied = true;
